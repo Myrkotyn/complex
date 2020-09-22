@@ -19,3 +19,16 @@ after_success:
     - docker push myrkotyn/complex-nginx
     - docker push myrkotyn/complex-api
     - docker push myrkotyn/complex-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: eu-central-1
+    app: complex-docker
+    env: ComplexDocker-env
+    bucket_name: elasticbeanstalk-eu-central-1-717138922414
+    bucket_path: complex-docker
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
